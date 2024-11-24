@@ -35,6 +35,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: cached-localnet
+          include-hidden-files: true
           path: .localnet
       - name: Install dependencies
         if: ${{ matrix.os == 'ubuntu-22.04' }}
@@ -95,8 +96,7 @@ jobs:
           mkdir ${{ github.workspace }}/release-windows
           Move-Item -Path desktop\build\temp-*/binaries\Haveno-*.exe -Destination ${{ github.workspace }}/release-windows/haveno-v${{ env.VERSION }}-windows-installer.exe
           Move-Item -Path desktop\build\temp-*/binaries\desktop-*.jar.SHA-256 -Destination ${{ github.workspace }}/release-windows
-        shell: powershell
-
+        shell: powershell       
       # win
       - uses: actions/upload-artifact@v3
         name: "Windows artifacts"
